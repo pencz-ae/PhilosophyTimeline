@@ -1,4 +1,4 @@
-# Filo‑Concept Timeline
+# Philosophy ‑ Concept Timeline
 
 Mapeia a ascensão e o declínio de **500 conceitos filosóficos** em milhões de livros (1800‑2020) — dos primórdios da modernidade até a virada do século XXI. O projeto reúne coleta de dados, ciência aberta e visualização interativa, servindo como portfólio prático de *Data Science* + *Digital Humanities*.
 
