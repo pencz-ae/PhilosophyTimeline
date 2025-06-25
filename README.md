@@ -4,7 +4,7 @@ Mapeia a ascensão e o declínio de **500 conceitos filosóficos** em milhões d
 
 ---
 
-## ✨ Principais Funcionalidades
+## ✨ Informações Principais
 
 | Camada            | Destaques                                                                                                                                                                            |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
