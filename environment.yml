@@ -1,0 +1,15 @@
+name: PhilTimeline
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.11
+  - pandas
+  - scipy
+  - fastapi
+  - sqlalchemy
+  - alembic
+  - psycopg2
+  - pip
+  - pip:
+    - uvicorn
+    - pytest
