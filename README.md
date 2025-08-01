@@ -1,70 +1,36 @@
-# Philosophy ‑ Concept Timeline
+# Wissenschaft ▶ 19 th-Century Knowledge Graph
 
-Mapeia a ascensão e o declínio de **500 conceitos filosóficos** em milhões de livros (1800‑2020) — dos primórdios da modernidade até a virada do século XXI. O projeto reúne coleta de dados, ciência aberta e visualização interativa, servindo como portfólio prático de *Data Science* + *Digital Humanities*.
-
----
-
-## ✨ Informações Principais
-
-| Camada            | Destaques                                                                                                                                                                            |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Backend**       | • Extração automática de termos do Wikidata <br>• Coleta Google Books Ngram <br>• Pipeline de séries temporais com STL & detecção de picos <br>• Banco de dados PostgreSQL + Alembic |
-| **Frontend**      | • Linha do tempo animada em React + D3 <br>• Filtros de ano, escala log/linear <br>• Destaque visual de pontos de inflexão <br>• Visualização de redes de coocorrência               |
-| **DevOps / FAIR** | • Docker Compose para dev / prod <br>• GitHub Actions: lint, testes, build, deploy <br>• Dataset publicado no Zenodo com DOI                                                         |
+Small research toolkit for mapping **nineteenth-century “scholars”** in Wikidata,
+collecting their works and scoring their contribution to the Hegelian idea of
+*Wissenschaft*.
 
 ---
 
-## 🚀 Como Rodar
+## What it does
 
-### 1. Pré‑requisitos
+| step | script | output |
+|------|--------|--------|
+| 1 | `grab_wikidata.py` | `data/raw/people_*.csv` – one file per root occupation (1 584 total) |
+| 2 | `consolidate_people.py` | `data/processed/scholars.csv` – people who lived **any time** between 1801-01-01 and 1900-12-31 |
+| 3 | `works_bigquery.sql` | `author_works.parquet` – all works linked by P50, P57, P800 |
+| 4 | `wissenchaft_relevance.py` | ranking of each author (semantic + graph + temporal) |
 
-* **Docker ≥ 24** (ou Podman)
-* Git
+Failed downloads are logged to `failed_occupations.csv` and a one-page
+`occupations_failed.pdf` for quick review.
 
-### 2. Clonar & subir os serviços
+---
 
-```bash
-git clone https://github.com/seu‑usuario/filo‑concept‑timeline.git
-cd filo‑concept‑timeline
-docker compose up --build
-```
-
-* `backend` expõe **[http://localhost:8000/api/](http://localhost:8000/api/)**
-* `frontend` disponível em **[http://localhost:5173/](http://localhost:5173/)**
-
-### 3. Ambiente Conda (opcional)
-
-Se preferir rodar localmente:
+## Quick start (local)
 
 ```bash
+# clone + create env
+git clone https://github.com/youruser/PhilosophyTimeline.git
+cd PhilosophyTimeline
 conda env create -f environment.yml
-conda activate filo-concept
-pre-commit install
-```
+conda activate philosophy
 
----
+# crawl scholars (~1 h, obeys WDQS limits)
+python backend/scripts/grab_wikidata.py --page-size 1000 --sleep 2
 
-## 🛠️ Tech Stack
-
-* **Python 3.11** · Pandas · Statsmodels · NetworkX
-* **FastAPI** + Uvicorn
-* **PostgreSQL 15** + SQLAlchemy + Alembic
-* **React 19** · Vite · D3 v7 · TypeScript
-* **Docker Compose** · GitHub Actions CI/CD
-
----
-
-## 📄 Licença
-
-Este projeto utiliza a licença **MIT**. Sinta‑se livre para usar, modificar e distribuir. Veja o texto completo abaixo.
-
-```
-MIT License
-
-Copyright (c) 2025 [Seu Nome]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-... (texto completo da MIT License até o fim) ...
-```
+# clean / filter
+python backend/scripts/consolidate_people.py
