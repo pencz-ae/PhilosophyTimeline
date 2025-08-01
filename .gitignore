@@ -37,6 +37,10 @@ JavaScript
 /tmp
 /out-tsc
 
+# CSV Data
+*.csv
+
+
 # Runtime data
 pids
 *.pid

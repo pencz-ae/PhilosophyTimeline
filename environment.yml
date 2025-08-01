@@ -7,6 +7,7 @@ dependencies:
   - scipy
   - fastapi
   - sqlalchemy
+  - sparqlwrapper
   - alembic
   - psycopg2
   - pip
