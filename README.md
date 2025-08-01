@@ -1,8 +1,9 @@
-# Wissenschaft ▶ 19 th-Century Knowledge Graph
+# Wissenschaft | 19th-Century Knowledge Graph
 
 Small research toolkit for mapping **nineteenth-century “scholars”** in Wikidata,
 collecting their works and scoring their contribution to the Hegelian idea of
 *Wissenschaft*.
+_(The project is at an early-stage)_
 
 ---
 
@@ -10,10 +11,8 @@ collecting their works and scoring their contribution to the Hegelian idea of
 
 | step | script | output |
 |------|--------|--------|
-| 1 | `grab_wikidata.py` | `data/raw/people_*.csv` – one file per root occupation (1 584 total) |
-| 2 | `consolidate_people.py` | `data/processed/scholars.csv` – people who lived **any time** between 1801-01-01 and 1900-12-31 |
-| 3 | `works_bigquery.sql` | `author_works.parquet` – all works linked by P50, P57, P800 |
-| 4 | `wissenchaft_relevance.py` | ranking of each author (semantic + graph + temporal) |
+| 1 | `scholar_crawler.py` | `data/raw/people_*.csv` – one file per root occupation (1 584 total) |
+| 2 | `filter_terms.py` | `data/processed/scholars.csv` – # trims raw term list (stub for now) |
 
 Failed downloads are logged to `failed_occupations.csv` and a one-page
 `occupations_failed.pdf` for quick review.
