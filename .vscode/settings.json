@@ -1,6 +1,31 @@
 {
+    // 1. Interpreter
+    "python.defaultInterpreterPath": "C:\\Coding\\miniconda\\python.exe",
     "python.pythonPath": "C:\\Coding\\miniconda\\python.exe",
+
+    // 2. Formatação on-save com Black
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "black",
+
+    // 3. Organizar imports com isort on-save
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "python.sortImports.path": "isort",
+    "python.sortImports.args": ["--profile", "black"],
+
+    // 4. Linting com flake8
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "flake8",
+    "python.linting.flake8Args": [
+        "--max-line-length=88",
+        "--extend-ignore=E203"
+    ],
+
+    // 5. Seu schema YAML para o environment.yml
     "yaml.schemas": {
-        "file:///c%3A/Users/elast/.vscode/extensions/ms-python.python-2025.8.0-win32-x64/schemas/conda-environment.json": "file:///c%3A/Users/elast/Documents/Git/PhilosophyTimeline/PhilosophyTimeline/environment.yml"
+        "file:///c%3A/Users/elast/.vscode/extensions/ms-python.python-2025.8.0-win32-x64/schemas/conda-environment.json":
+            "file:///c%3A/Users/elast/Documents/Git/PhilosophyTimeline/PhilosophyTimeline/environment.yml"
     }
 }
